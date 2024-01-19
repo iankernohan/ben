@@ -1,13 +1,19 @@
 import ImageDisplay from "../UI/ImageDisplay";
-import { autoImages } from "../photos/autoImages";
-import { shuffleImages } from "../helpers/helpers";
+import { getImages, shuffleImages } from "../helpers/helpers";
+import { useLoaderData } from "react-router-dom";
 
 function Automotive() {
+  const images = useLoaderData();
   return (
     <div>
-      <ImageDisplay images={shuffleImages(autoImages)} path={"Automotive"} />
+      <ImageDisplay images={shuffleImages(images)} path={"Automotive"} />
     </div>
   );
+}
+
+export async function loader() {
+  const images = await getImages("auto");
+  return images;
 }
 
 export default Automotive;

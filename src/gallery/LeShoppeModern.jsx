@@ -1,19 +1,19 @@
 import ImageDisplay from "../UI/ImageDisplay";
-import { shuffleImages } from "../helpers/helpers";
-import { leShoppeModernImages } from "../photos/leShoppeModernImages";
-
-// const images = require.context("../ben-photos/Le-Shoppe-Modern", true);
-// const imageList = images.keys().map((image) => image);
+import { getImages, shuffleImages } from "../helpers/helpers";
+import { useLoaderData } from "react-router-dom";
 
 function LeShoppeModern() {
+  const images = useLoaderData();
   return (
     <div>
-      <ImageDisplay
-        images={shuffleImages(leShoppeModernImages)}
-        path="Le-Shoppe-Modern"
-      />
+      <ImageDisplay images={shuffleImages(images)} path="Le-Shoppe-Modern" />
     </div>
   );
+}
+
+export async function loader() {
+  const images = await getImages("leShoppeModern");
+  return images;
 }
 
 export default LeShoppeModern;

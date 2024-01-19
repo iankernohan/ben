@@ -1,12 +1,7 @@
 import "photoswipe/dist/photoswipe.css";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import { useNavigate } from "react-router-dom";
-import {
-  randNum50,
-  randNum3,
-  shiftAmount,
-  getImageSize,
-} from "../helpers/helpers";
+import { randNum50, randNum3, shiftAmount } from "../helpers/helpers";
 
 const align = ["end", "center", "start"];
 const justify = ["left", "center", "right"];
@@ -21,19 +16,18 @@ function ImageDisplay({ images, path }) {
         <button onClick={() => navigate(-1)}>Back</button>
         <h1>{path}</h1>
       </header>
+
       <Gallery>
         <section className="gallery">
           {images.map((image, index) => {
-            const url = `../ben-photos/${path}/${image.name}`;
-            const { width, height } = getImageSize(url);
-
+            // const url = `../ben-photos/${path}/${image.name}`;
             return (
               <Item
                 key={index}
-                original={url}
-                thumbnail={url}
-                width={width}
-                height={height}
+                original={image.name}
+                thumbnail={image.name}
+                width={image.width}
+                height={image.height}
               >
                 {({ ref, open }) => (
                   <div
@@ -47,10 +41,7 @@ function ImageDisplay({ images, path }) {
                     <img
                       ref={ref}
                       onClick={open}
-                      src={`../ben-photos/${path}/${image.name.replace(
-                        "./",
-                        ""
-                      )}`}
+                      src={image.name}
                       alt=""
                       style={{
                         justifySelf: justify[randNum3()],
