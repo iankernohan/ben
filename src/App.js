@@ -8,40 +8,46 @@ import Automotive, { loader as autoLoader } from "./gallery/Automotive";
 import Event, { loader as eventLoader } from "./gallery/Event";
 import Landscape, { loader as landscapeLoader } from "./gallery/Landscape";
 import Portrait, { loader as portraitLoader } from "./gallery/Portrait";
+import AppLayout from "./AppLayout";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <LandingPage />,
-  },
-  {
-    path: "/home",
-    element: <HomePage />,
-  },
-  {
-    path: "/le_shoppe_modern",
-    element: <LeShoppeModern />,
-    loader: leShoppeLoader,
-  },
-  {
-    path: "/automotive",
-    element: <Automotive />,
-    loader: autoLoader,
-  },
-  {
-    path: "/event",
-    element: <Event />,
-    loader: eventLoader,
-  },
-  {
-    path: "/landscape",
-    element: <Landscape />,
-    loader: landscapeLoader,
-  },
-  {
-    path: "/portrait",
-    element: <Portrait />,
-    loader: portraitLoader,
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <LandingPage />,
+      },
+      {
+        path: "/home",
+        element: <HomePage />,
+      },
+      {
+        path: "/le_shoppe_modern",
+        element: <LeShoppeModern />,
+        loader: leShoppeLoader,
+      },
+      {
+        path: "/automotive",
+        element: <Automotive />,
+        loader: autoLoader,
+      },
+      {
+        path: "/event",
+        element: <Event />,
+        loader: eventLoader,
+      },
+      {
+        path: "/landscape",
+        element: <Landscape />,
+        loader: landscapeLoader,
+      },
+      {
+        path: "/portrait",
+        element: <Portrait />,
+        loader: portraitLoader,
+      },
+    ],
   },
 ]);
 
